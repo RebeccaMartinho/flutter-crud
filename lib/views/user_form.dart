@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_crud/models/user.dart';
 import 'package:flutter_crud/provider/users.dart';
 import 'package:provider/provider.dart';
+import 'package:email_validator/email_validator.dart';
 
 class UserForm extends StatefulWidget {
   @override
@@ -66,10 +67,10 @@ class _UserFormState extends State<UserForm> {
             children: <Widget>[
               TextFormField(
                 initialValue: _formData['name'],
-                decoration: InputDecoration(labelText: 'Nome'),
+                decoration: InputDecoration(labelText: 'Nome*'),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Ocorreu um erro';
+                    return 'Digite um nome';
                   }
 
                   if (value.trim().length < 3) {
@@ -82,13 +83,27 @@ class _UserFormState extends State<UserForm> {
               ),
               TextFormField(
                 initialValue: _formData['email'],
-                decoration: InputDecoration(labelText: 'E-mail'),
+                decoration: InputDecoration(labelText: 'E-mail*'),
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Digite um e-mail';
+                  }
+                  if (!EmailValidator.validate(value)) {
+                    return "Digite um e-mail válido!";
+                  }
+
+                  return null;
+                },
                 onSaved: (value) => _formData['email'] = value,
               ),
               TextFormField(
                 initialValue: _formData['avatarUrl'],
                 decoration: InputDecoration(labelText: 'URL do Avatar'),
                 onSaved: (value) => _formData['avatarUrl'] = value,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('*elementos obrigatórios'),
               ),
             ],
           ),
