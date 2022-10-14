@@ -67,7 +67,9 @@ class _UserFormState extends State<UserForm> {
             children: <Widget>[
               TextFormField(
                 initialValue: _formData['name'],
-                decoration: InputDecoration(labelText: 'Nome*'),
+                decoration: InputDecoration(
+                  labelText: 'Nome',
+                ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'Digite um nome';
@@ -83,7 +85,9 @@ class _UserFormState extends State<UserForm> {
               ),
               TextFormField(
                 initialValue: _formData['email'],
-                decoration: InputDecoration(labelText: 'E-mail*'),
+                decoration: InputDecoration(
+                  labelText: 'E-mail',
+                ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'Digite um e-mail';
@@ -100,10 +104,6 @@ class _UserFormState extends State<UserForm> {
                 initialValue: _formData['avatarUrl'],
                 decoration: InputDecoration(labelText: 'URL do Avatar'),
                 onSaved: (value) => _formData['avatarUrl'] = value,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('*elementos obrigatórios'),
               ),
             ],
           ),
