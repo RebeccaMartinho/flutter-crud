@@ -22,15 +22,21 @@ class Home extends StatelessWidget {
             ),
           ],
         ),
-        body: Center(
-          child: Column(children: [
-            Text("Bem-vindo"),
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(AppRoutes.USER_LIST);
-                },
-                child: Text("Ver minha lista"))
-          ]),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 200),
+          child: Center(
+            child: Column(children: [
+              Text(
+                "Bem-vindo",
+                style: TextStyle(fontSize: 26.0),
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(AppRoutes.USER_LIST);
+                  },
+                  child: Text("Ver minha lista"))
+            ]),
+          ),
         ));
   }
 }
